@@ -1,17 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 
 function JournalForm(props) {
     const [input, setInput] = useState ('')
+
+    const inputFocus = useRef(null)
+
+    useEffect (() => {
+        inputFocus.current.focus()
+    })
+
     const handleChange = e => {
         setInput(e.target.value);
     }
+
     const handleSubmit = e => {
         e.preventDefault();
 
-        // props.onSubmit({
-        //     id: Math.floor(Math.random() * 10000),
-        //     text: input
-        // })
+        props.onSubmit({
+            id: Math.floor(Math.random() * 10000),
+            text: input
+        })
         setInput('')
         
     }
@@ -19,13 +27,15 @@ function JournalForm(props) {
     <form className='journal-form' onSubmit={handleSubmit}>
         <input 
             type='text' 
-            placeholder='Add Gratitude' 
+            placeholder='I am grateful for...' 
             value={input} 
             name='text'
             className='journal-input'
             onChange={handleChange}
+            ref={inputFocus}
+
             />
-        <button className='add-gratitude-button'>Add Gratitude</button>
+        <button className='gratitude-button'>Add Gratitude</button>
     </form>
   )
 }

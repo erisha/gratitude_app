@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import JournalForm from './components/JournalForm';
+import JournalList from './components/JournalList';
 
 function App() {
   return (
     <div className="gratitude-app">
-     <JournalForm />
+     <JournalList />
     </div>
   );
 }
